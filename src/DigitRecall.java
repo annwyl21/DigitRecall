@@ -8,39 +8,43 @@ public class DigitRecall {
         // instance of input capture scanner class
         Scanner scan = new Scanner(System.in);
 
-        //display and capture a random digit
-        int num = rand.nextInt(10)+1;
-        String listOfNums = "";
-        listOfNums += num;
+        Boolean gameContinue = true;
+        while (gameContinue == true) {
 
-        // PLAN
-// increase the length of time the sleep operate
-// increase the numbers required to recall
-        try {
+            //display and capture a random digit
+            int num = rand.nextInt(10) + 1;
+            String stringOfNums = "";
+            stringOfNums += num;
+
+            // print number to screen
             System.out.println(num);
-            Thread.sleep(250); // see notes on SLEEP
-
+            ScreenWait.waitLoop(250);
             // remove number from screen using blank lines
             // clear screen and \r to overwrite the previous print did not work
-            for (int i=0; i<50; i++){
+            for (int i = 0; i < 50; i++) {
                 System.out.println();
             }
 
-            // prompt user to type number
-            System.out.println("Type number/s:");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            // determine result
+            System.out.println("Enter digit");
+            int recalled = scan.nextInt();
+            String stringOfRecalled = "";
+            stringOfRecalled += recalled;
+            ScreenWait.waitLoop(250);
+
+            // boolean output
+            if (num == recalled){
+                System.out.println(num == recalled);
+            } else {
+                gameContinue = false;
+            }
+
         }
 
-        // determine result
-        int recalled = scan.nextInt();
-        String listOfRecalled = "";
-        listOfRecalled += recalled;
-        // boolean output
-        System.out.println(listOfRecalled.equals(listOfNums));
+        System.out.println("Thank you for playing");
+        System.exit(0);
 
     }
-
 }
 
 // NOTES
