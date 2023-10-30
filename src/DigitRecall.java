@@ -19,7 +19,7 @@ public class DigitRecall {
         // game counter
         int counter = 0;
 
-        // HashMap with increased timings
+        // Initialise timings and digit range
         HashMap<Integer, Integer> timings = initialiseTimings();
         HashMap<Integer, Integer> range = initialiseRange();
 
