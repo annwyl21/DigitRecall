@@ -24,7 +24,7 @@ public class DigitRecall {
         HashMap<Integer, Integer> range = initialiseRange();
 
         Boolean gameContinue = true;
-        while (gameContinue == true && counter < MAX_ROUNDS) {
+        while (gameContinue && counter < MAX_ROUNDS) {
 
             counter++;
             int timingIndex = counter %3;
