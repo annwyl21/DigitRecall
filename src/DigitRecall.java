@@ -1,5 +1,6 @@
 import java.util.Random;
 import java.util.Scanner;
+import java.util.HashMap;
 
 public class DigitRecall {
     public static void main(String[] args){
@@ -8,8 +9,20 @@ public class DigitRecall {
         // instance of input capture scanner class
         Scanner scan = new Scanner(System.in);
 
+        // game counter
+        int counter = 2;
+
+        // HashMap with increased timings
+        HashMap<Integer, Integer> timings = new HashMap<>();
+        timings.put(1, 750);
+        timings.put(2, 500);
+        timings.put(3, 250);
+
         Boolean gameContinue = true;
         while (gameContinue == true) {
+
+            counter++;
+            int waitingtime = counter %3;
 
             //display and capture a random digit
             int num = rand.nextInt(10) + 1;
@@ -18,12 +31,14 @@ public class DigitRecall {
 
             // print number to screen
             System.out.println(num);
-            ScreenWait.waitLoop(250);
-            // remove number from screen using blank lines
-            // clear screen and \r to overwrite the previous print did not work
-            for (int i = 0; i < 50; i++) {
-                System.out.println();
+            switch (waitingtime) {
+                case 0 -> ScreenWait.waitLoop(timings.get(1));
+                case 1 -> ScreenWait.waitLoop(timings.get(2));
+                case 2 -> ScreenWait.waitLoop(timings.get(3));
             }
+
+            // remove number from screen using blank lines
+            ScreenWait.clearScreen();
 
             // determine result
             System.out.println("Enter digit");
@@ -31,6 +46,7 @@ public class DigitRecall {
             String stringOfRecalled = "";
             stringOfRecalled += recalled;
             ScreenWait.waitLoop(250);
+            ScreenWait.clearScreen();
 
             // boolean output
             if (num == recalled){
